@@ -69,33 +69,22 @@ function BuyMenu({ coins }) {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:8080/api/trade/${isSell ? "sell" : "buy"}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            symbol: ticker,
-            amount: parseFloat(amount),
-            price: parseFloat(price),
-          }),
-        },
-      );
+      await apiFetch(`/api/trade/${isSell ? "sell" : "buy"}`, {
+        method: "POST",
 
-      if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error);
-      }
+        body: JSON.stringify({
+          symbol: ticker,
+          amount: parseFloat(amount),
+          price: parseFloat(price),
+        }),
+      });
 
       alert(`${isSell ? "Sold" : "Bought"} ${amount} ${ticker}`);
-      // remove alert
 
       setAmount("");
     } catch (error) {
       console.error(error);
+
       alert(error.message);
     }
   };
@@ -125,9 +114,7 @@ function BuyMenu({ coins }) {
                 <span className="coin-selector-symbol">{ticker}</span>
               </div>
 
-              <span className="coin-selector-arrow">
-                {isOpen ? "▲" : "▼"}
-              </span>
+              <span className="coin-selector-arrow">{isOpen ? "▲" : "▼"}</span>
             </div>
 
             {isOpen && (
@@ -217,10 +204,7 @@ function BuyMenu({ coins }) {
                 onChange={(e) => setPrice(e.target.value)}
               />
 
-              <button
-                type="button"
-                className="btn btn-light switch-btn"
-              >
+              <button type="button" className="btn btn-light switch-btn">
                 ↕
               </button>
             </div>

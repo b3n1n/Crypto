@@ -3,51 +3,26 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cryptolist from "./Cryptolist";
 import RecentTrades from "./RecentTrades";
+import useApi from "../../custom_hooks/useApi";
 import "./styles/PortfolioBody.css";
 
 function PortfolioBody() {
   const navigate = useNavigate();
-  const [portfolio, setPortfolio] = useState(null);
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    const loadPortfolio = async () => {
-      const response = await fetch("http://localhost:8080/api/portfolio", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const data = await response.json();
-
-      setPortfolio(data);
-    };
-
-    loadPortfolio();
-  }, []);
+  const { data: portfolio, loading, error } = useApi("/api/portfolio");
 
   if (!token) {
     return (
-      <div className="logout-portfolio"
-      >
-        <div
-          className="logout-portfolio_container"
-        >
-          <h1 className="logout-portfolio_container-h">
-            🔒 Требуется вход
-          </h1>
+      <div className="logout-portfolio">
+        <div className="logout-portfolio_container">
+          <h1 className="logout-portfolio_container-h">🔒 Требуется вход</h1>
 
-          <p
-            className="logout-portfolio_container-p"
-          >
+          <p className="logout-portfolio_container-p">
             Для просмотра портфеля необходимо авторизоваться.
           </p>
 
-          <button
-            onClick={() => navigate("/login")}
-          >
-            Войти
-          </button>
+          <button onClick={() => navigate("/login")}>Войти</button>
         </div>
       </div>
     );
@@ -65,11 +40,9 @@ function PortfolioBody() {
           <div className="text-end">
             <div className="text-secondary">Total Value</div>
 
-            <h1 className="fw-bold m-0">
               <h1 className="fw-bold m-0">
                 ${Number(portfolio.totalValue).toLocaleString()}
               </h1>
-            </h1>
           </div>
         </div>
         <Cryptolist wallets={portfolio.wallets} />

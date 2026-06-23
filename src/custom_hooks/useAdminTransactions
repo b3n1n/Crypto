@@ -1,0 +1,68 @@
+import { useState, useEffect } from "react";
+
+function useAdminTransactions() {
+
+  const [transactions, setTransactions] =
+    useState([]);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
+
+  const loadTransactions =
+    async () => {
+
+      try {
+
+        setLoading(true);
+
+        const token =
+          localStorage.getItem("token");
+
+        const response =
+          await fetch(
+            "http://localhost:8080/api/admin/transactions",
+            {
+              headers: {
+                Authorization:
+                  `Bearer ${token}`,
+              },
+            }
+          );
+
+        if (!response.ok) {
+          throw new Error(
+            "Failed to load transactions"
+          );
+        }
+
+        const data =
+          await response.json();
+
+        setTransactions(data);
+
+      } catch (err) {
+
+        setError(err.message);
+
+      } finally {
+
+        setLoading(false);
+      }
+    };
+
+  useEffect(() => {
+    loadTransactions();
+  }, []);
+
+  return {
+    transactions,
+    loading,
+    error,
+    loadTransactions,
+  };
+}
+
+export default useAdminTransactions;

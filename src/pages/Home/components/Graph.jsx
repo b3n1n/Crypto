@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid,
-  ResponsiveContainer, Tooltip,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
 } from "recharts";
+import useChartData from "../../../custom_hooks/useChartData";
 
 function Graph({ coins }) {
-  const [chartData, setChartData] = useState([]);
   const [activeRange, setActiveRange] = useState("1D");
   const [selectedId, setSelectedId] = useState("bitcoin");
 
-  const rangeMap = {"1D": "1", "1W": "7", "1M": "30", "1Y": "365" };
+  const rangeMap = { "1D": "1", "1W": "7", "1M": "30", "1Y": "365" };
   const ranges = ["1D", "1W", "1M", "1Y"];
 
   const coin = coins?.find((c) => c.id === selectedId);
@@ -18,23 +23,14 @@ function Graph({ coins }) {
   const isPositive = change >= 0;
   const changeColor = isPositive ? "#16c784" : "#ea3943";
 
-  useEffect(() => {
-    fetch(
-      `https://api.coingecko.com/api/v3/coins/${selectedId}/market_chart?vs_currency=usd&days=${rangeMap[activeRange]}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const formatted = data.prices.map((item) => {
-          const date = new Date(item[0]);
-          const label =
-            activeRange === "1D"
-              ? date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-              : date.toLocaleDateString([], { month: "short", day: "numeric" });
-          return { time: label, price: item[1] };
-        });
-        setChartData(formatted);
-      });
-  }, [activeRange, selectedId]);
+  const { chartData, loading, error } = useChartData(selectedId, activeRange);
+  if (loading) {
+    return <div>Loading chart...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   const prices = chartData.map((d) => d.price);
   const minPrice = prices.length ? Math.min(...prices) * 0.9995 : "auto";
@@ -48,9 +44,14 @@ function Graph({ coins }) {
             {coin?.name} ({coin?.symbol?.toUpperCase()})
           </p>
           <p className="m-0" style={{ fontSize: "40px", fontWeight: "600" }}>
-            ${price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{" "}
+            $
+            {price.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}{" "}
             <span style={{ color: changeColor, fontSize: "24px" }}>
-              {isPositive ? "+" : ""}{change.toFixed(2)}%
+              {isPositive ? "+" : ""}
+              {change.toFixed(2)}%
             </span>
           </p>
         </div>
