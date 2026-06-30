@@ -26,8 +26,8 @@ function AssetsPage() {
       const isEdit = editingAsset !== null;
 
       const url = isEdit
-        ? `http://localhost:8080/api/admin/assets/${editingAsset.id}`
-        : "http://localhost:8080/api/admin/assets";
+        ? `https://crypto-application-956e851e13c5.herokuapp.com/api/admin/assets/${editingAsset.id}`
+        : "https://crypto-application-956e851e13c5.herokuapp.com/api/admin/assets";
 
       const method = isEdit ? "PUT" : "POST";
 
