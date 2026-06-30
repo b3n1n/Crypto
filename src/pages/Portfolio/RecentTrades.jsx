@@ -2,9 +2,10 @@
 import React from "react";
 import Trades from "./Trades";
 
-function RecentTrades({trades}) {
+function RecentTrades({ trades }) {
   return (
-    <div className="container mt-4 w-50">
+    <div className="container-fluid mt-4">
+      {" "}
       <div className="card shadow-sm border-0 rounded-4">
         <div className="card-body">
           <h3 className="mb-4 fw-bold">Recent Trades</h3>

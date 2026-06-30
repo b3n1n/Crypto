@@ -11,6 +11,9 @@ import GuestRoute from "./routes/GuestRoute";
 import NotFound from "./pages/NotFound";
 import AdminRoute from "./routes/AdminRoute";
 import Admin from "./pages/Admin";
+import { ToastContainer } from "react-toastify";
+import { WalletProvider } from "./context/WalletContext";
+import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -26,48 +29,51 @@ function App() {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home coins={coins} />} />
+      <WalletProvider>
+        <Routes>
+          <Route path="/" element={<Home coins={coins} />} />
 
-        <Route
-          path="/portfolio"
-          element={
-            <ProtectedRoute>
-              <Portfolio coins={coins} />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/portfolio"
+            element={
+              <ProtectedRoute>
+                <Portfolio coins={coins} />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route path="/market" element={<Market coins={coins} />} />
+          <Route path="/market" element={<Market coins={coins} />} />
 
-        <Route
-          path="/login"
-          element={
-            <GuestRoute>
-              <Login />
-            </GuestRoute>
-          }
-        />
+          <Route
+            path="/login"
+            element={
+              <GuestRoute>
+                <Login />
+              </GuestRoute>
+            }
+          />
 
-        <Route
-          path="/register"
-          element={
-            <GuestRoute>
-              <Register />
-            </GuestRoute>
-          }
-        />
+          <Route
+            path="/register"
+            element={
+              <GuestRoute>
+                <Register />
+              </GuestRoute>
+            }
+          />
 
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <Admin />
-            </AdminRoute>
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <Admin />
+              </AdminRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ToastContainer position="top-right" autoClose={3000} theme="dark" />
+      </WalletProvider>
     </>
   );
 }

@@ -4,48 +4,29 @@ import AssetsPage from "./assets/AssetPage";
 import UsersPage from "./users/UsersPage";
 import TransactionsPage from "./transactions/TransactionsPage";
 import AdminLayout from "./AdminLayout";
+import { useTranslation } from "react-i18next";
 
 function AdminPage() {
+  const { t } = useTranslation();
   return (
-
     <div className="container-fluid p-4">
-
-      <h1 className="mb-4 fw-bold">
-        Admin Dashboard
-      </h1>
-
-      {/* STATS */}
+      <h1 className="mb-4 fw-bold">{t("adminPanel")}</h1>
 
       <div className="row mb-4">
-
-       <AdminDashboard/>
-
+        <AdminDashboard />
       </div>
-
-      {/* ASSETS */}
 
       <div className="card shadow-sm mb-4">
-
-        <AssetsPage/>
-
+        <AssetsPage />
       </div>
-
-      {/* USERS */}
 
       <div className="card shadow-sm mb-4">
-
-        <UsersPage/>
-
+        <UsersPage />
       </div>
-
-      {/* TRANSACTIONS */}
 
       <div className="card shadow-sm">
-
-        <TransactionsPage/>
-
+        <TransactionsPage />
       </div>
-
     </div>
   );
 }

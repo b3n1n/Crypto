@@ -157,3 +157,71 @@
   font-size: 0.9rem;
   margin-left: auto;
 }
+/* =========================
+   Mobile version
+   ========================= */
+
+@media (max-width: 768px) {
+  .trade-card {
+    max-width: 100%;
+    width: 100%;
+    padding: 16px !important;
+    border-radius: 16px;
+  }
+
+  .section-title {
+    font-size: 0.95rem;
+  }
+
+  .custom-input {
+    height: 48px;
+    font-size: 1rem;
+  }
+
+  .buy-btn {
+    height: 52px;
+    font-size: 1rem;
+  }
+
+  .switch-btn {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .coin-selector-name {
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coin-selector-symbol {
+    font-size: 0.8rem;
+  }
+
+  .dropdown_search_select {
+    max-height: 180px;
+  }
+
+  .dropdown_search_select-coin_name {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .percent-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+  }
+}
+.percent-buttons {
+  display: flex;
+}
+
+@media (max-width: 480px) {
+  .percent-buttons .percent-btn {
+    flex: 1 1 calc(50% - 4px);
+  }
+}

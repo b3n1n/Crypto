@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { apiFetch } from "../../api/api";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 function LoginBody(props) {
   const { login } = useAuth();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -21,18 +26,19 @@ function LoginBody(props) {
       });
 
       login(data.token);
+      toast.success(t("loginSuccessful"));
     } catch (err) {
-      setError(err.message);
+      t(err.message) || toast.error(err.message);
     }
   };
   return (
     <div className="container vh-100 d-flex justify-content-center align-items-center">
       <div className="card shadow p-4 col-12 col-md-6 col-lg-4">
-        <h2 className="text-center mb-4">Login</h2>
+        <h2 className="text-center mb-4">{t("login")}</h2>
 
         <form onSubmit={handleLogin}>
           <div className="mb-3">
-            <label className="form-label">Username</label>
+            <label className="form-label">{t("username")}</label>
 
             <input
               type="text"
@@ -44,7 +50,7 @@ function LoginBody(props) {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Password</label>
+            <label className="form-label">{t("password")}</label>
 
             <input
               type="password"

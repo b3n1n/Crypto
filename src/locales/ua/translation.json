@@ -1,0 +1,123 @@
+{
+  "appName": "Криптобіржа",
+
+  "login": "Увійти",
+  "logout": "Вийти",
+  "register": "Реєстрація",
+
+  "username": "Ім'я користувача",
+  "email": "Електронна пошта",
+  "password": "Пароль",
+  "confirmPassword": "Підтвердження пароля",
+
+  "enterUsername": "Введіть ім'я користувача",
+  "enterEmail": "Введіть email",
+  "enterPassword": "Введіть пароль",
+  "confirmYourPassword": "Підтвердіть пароль",
+
+  "profile": "Профіль",
+  "portfolio": "Портфель",
+  "wallet": "Гаманець",
+  "market": "Ринок",
+  "trade": "Торгівля",
+  "dashboard": "Панель",
+  "history": "Історія",
+
+  "buy": "Купити",
+  "sell": "Продати",
+
+  "price": "Ціна",
+  "amount": "Кількість",
+  "total": "Разом",
+
+  "balance": "Баланс",
+  "available": "Доступно",
+  "locked": "Заблоковано",
+
+  "deposit": "Поповнити",
+  "withdraw": "Вивести",
+
+  "depositFunds": "Поповнення рахунку",
+  "withdrawFunds": "Виведення коштів",
+
+  "processing": "Обробка...",
+  "cancel": "Скасувати",
+  "close": "Закрити",
+  "save": "Зберегти",
+  "delete": "Видалити",
+  "edit": "Редагувати",
+
+  "asset": "Актив",
+  "assets": "Активи",
+
+  "recentTransactions": "Останні транзакції",
+  "transactions": "Транзакції",
+
+  "users": "Користувачі",
+  "adminPanel": "Панель адміністратора",
+
+  "search": "Пошук",
+
+  "loading": "Завантаження...",
+  "success": "Успіх",
+  "error": "Помилка",
+
+  "language": "Мова",
+
+  "english": "Англійська",
+  "russian": "Російська",
+  "ukrainian": "Українська",
+
+  "registrationSuccessful": "Реєстрація успішна!",
+
+  "loginSuccessful": "Вхід виконано успішно!",
+
+  "depositSuccessful": "Поповнення успішне!",
+
+  "withdrawSuccessful": "Кошти успішно виведено!",
+
+  "wrongPassword": "Неправильний пароль",
+
+  "userBlocked": "Ваш акаунт заблоковано.",
+
+  "invalidEmail": "Невірний формат email",
+
+  "passwordRequirements": "Пароль повинен містити щонайменше 8 символів, одну велику літеру, одну малу літеру та цифру",
+
+  "passwordMismatch": "Паролі не співпадають",
+
+  "serverError": "Помилка сервера",
+
+  "insufficientFunds": "Недостатньо коштів",
+
+  "tradeAction": "{{action}} {{ticker}}",
+    "marketOverview": "Огляд ринку",
+  "name": "Назва",
+  "change24h": "Зміна за 24 год",
+  "volume": "Обсяг",
+  "marketCap": "Ринкова капіталізація",
+  "singIn": "Залогуватися",
+  "getStarted": "Почати",
+  "saveFailed": "Не вдалося зберегти",
+  "confirmDeleteAsset": "Видалити актив?",
+  "confirmDeleteUser": "Ви підтверджуєте видалення користувача?",
+  "addAsset": "Додати актив",
+  "addUser": "Додати користувача",
+  "symbol": "Символ",
+  "actions": "Дії",
+  "role": "Роль",
+  "status": "Статус",
+  "active": "Активний",
+  "blocked": "Заблокований",
+  "block": "Заблокувати",
+  "unblock": "Розблокувати",
+  "user": "Користувач",
+  "type": "Тип",
+  "date": "Дата",
+    "editAsset": "Редагувати актив",
+  "editUser": "Редагувати користувача",
+  "update": "Оновити",
+  "symbolPlaceholder": "Символ (BTC)",
+  "namePlaceholder": "Назва (Bitcoin)",
+  "coingeckoIdPlaceholder": "CoinGecko ID (bitcoin)"
+}

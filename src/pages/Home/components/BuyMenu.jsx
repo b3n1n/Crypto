@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import "./BuyMenu.css";
+import { apiFetch } from "../../../api/api";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { useWallet } from "../../../context/WalletContext";
 
 function BuyMenu({ coins }) {
+  const { t } = useTranslation();
+  const { refreshWallets } = useWallet();
   const [isSell, setIsSell] = useState(false);
   const [selectedId, setSelectedId] = useState("bitcoin");
   const [search, setSearch] = useState("");
@@ -64,7 +70,7 @@ function BuyMenu({ coins }) {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Please login first");
+      toast.warning("Please login first");
       return;
     }
 
@@ -79,13 +85,15 @@ function BuyMenu({ coins }) {
         }),
       });
 
-      alert(`${isSell ? "Sold" : "Bought"} ${amount} ${ticker}`);
+      await refreshWallets();
+
+      toast.success(`${isSell ? "Sold" : "Bought"} ${amount} ${ticker}`);
 
       setAmount("");
     } catch (error) {
       console.error(error);
 
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -178,7 +186,7 @@ function BuyMenu({ coins }) {
               type="button"
               onClick={() => setIsSell(false)}
             >
-              Buy
+              {t("buy")}
             </button>
 
             <button
@@ -188,12 +196,12 @@ function BuyMenu({ coins }) {
               type="button"
               onClick={() => setIsSell(true)}
             >
-              Sell
+              {t("sell")}
             </button>
           </div>
 
           <div className="mb-3">
-            <label className="form-label section-title">Price (USD)</label>
+            <label className="form-label section-title">{t("price")}</label>
 
             <div className="d-flex gap-2 align-items-center">
               <input
@@ -201,18 +209,13 @@ function BuyMenu({ coins }) {
                 className="form-control custom-input"
                 placeholder={currentPrice.toLocaleString("en-US")}
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
               />
-
-              <button type="button" className="btn btn-light switch-btn">
-                ↕
-              </button>
             </div>
           </div>
 
           <div className="mb-3">
             <label className="form-label section-title">
-              Amount ({ticker})
+              {t("amount")}
             </label>
 
             <input
@@ -223,7 +226,8 @@ function BuyMenu({ coins }) {
               onChange={(e) => setAmount(e.target.value)}
             />
 
-            <div className="d-flex gap-2">
+            <div className="d-flex gap-2 flex-wrap percent-buttons">
+              {" "}
               {[25, 50, 75, 100].map((pct) => (
                 <button
                   className="btn btn-light percent-btn w-25"
@@ -238,7 +242,7 @@ function BuyMenu({ coins }) {
           </div>
 
           <div className="mb-3">
-            <label className="form-label section-title">Total (USD)</label>
+            <label className="form-label section-title">{t("total")}</label>
 
             <input
               type="text"
@@ -255,7 +259,10 @@ function BuyMenu({ coins }) {
               isSell ? "btn-danger" : "btn-success"
             }`}
           >
-            {isSell ? "Sell" : "Buy"} {ticker}
+            {t("tradeAction", {
+              action: t(isSell ? "sell" : "buy"),
+              ticker,
+            })}
           </button>
         </form>
       </div>

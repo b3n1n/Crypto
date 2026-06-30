@@ -1,15 +1,14 @@
 import React from "react";
 import BuyMenu from "./BuyMenu";
 import Graph from "./Graph";
+import "./Body.css";
 
-function Body({coins}) {
+function Body({ coins }) {
   return (
-    <>
-      <div className="container d-flex">
-        <Graph coins={coins}></Graph>
-        <BuyMenu coins={coins}></BuyMenu>
-      </div>
-    </>
+    <div className="trade-layout container">
+      <Graph coins={coins} />
+      <BuyMenu coins={coins} />
+    </div>
   );
 }
 

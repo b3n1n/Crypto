@@ -1,4 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+import { apiFetch } from "../../../api/api";
+import useAdminUsers from "../../../custom_hooks/useAdminUsers";
+import { toast } from "react-toastify";
 
 function UserFromModal({
   show,
@@ -8,7 +12,23 @@ function UserFromModal({
   handleChange,
   editingUser,
 }) {
+  const { t } = useTranslation();
   if (!show) return null;
+
+const createUser = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      await apiFetch("/api/admin/users", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+
+      toast.success(`User created`);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div
@@ -22,7 +42,7 @@ function UserFromModal({
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">
-              {editingUser ? "Edit User" : "Add User"}
+              {editingUser ? t("editUser") : t("addUser")}
             </h5>
 
             <button className="btn-close" onClick={onClose} />
@@ -32,7 +52,7 @@ function UserFromModal({
             <input
               type="text"
               className="form-control mb-3"
-              placeholder="Username"
+              placeholder={t("username")}
               name="userName"
               value={formData.userName}
               onChange={handleChange}
@@ -41,7 +61,7 @@ function UserFromModal({
             <input
               type="email"
               className="form-control mb-3"
-              placeholder="Email"
+              placeholder={t("email")}
               name="email"
               value={formData.email}
               onChange={handleChange}
@@ -50,7 +70,7 @@ function UserFromModal({
             <input
               type="password"
               className="form-control mb-3"
-              placeholder="Password"
+              placeholder={t("password")}
               name="password"
               value={formData.password}
               onChange={handleChange}
@@ -70,11 +90,11 @@ function UserFromModal({
 
           <div className="modal-footer">
             <button className="btn btn-secondary" onClick={onClose}>
-              Cancel
+              {t("cancel")}
             </button>
 
-            <button className="btn btn-success" onClick={onSave}>
-              Save
+            <button className="btn btn-success" onClick={onSave} onClick={createUser}>
+              {t("save")}
             </button>
           </div>
         </div>

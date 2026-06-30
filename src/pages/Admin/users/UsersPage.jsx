@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import useAdminUsers from "../../../custom_hooks/useAdminUsers";
 import UserFromModal from "./UserFromModal";
+import { apiFetch } from "../../../api/api";
+import { useTranslation } from "react-i18next";
 
 function UsersPage() {
+  const { t } = useTranslation();
   const [editingUser, setEditingUser] = useState(null);
 
   const { users, loading, error, loadUsers } = useAdminUsers();
@@ -23,32 +26,9 @@ function UsersPage() {
     });
   };
 
-  const createUser = async () => {
-    try {
-      const token = localStorage.getItem("token");
-
-      await apiFetch("/api/admin/users", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
-
-      await loadUsers();
-
-      setFormData({
-        userName: "",
-        email: "",
-        password: "",
-        role: "USER",
-      });
-
-      setShowModal(false);
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>{t("loading")}</div>;
   }
 
   if (error) {
@@ -94,24 +74,40 @@ function UsersPage() {
     }
   };
 
+  const deleteUser = async (id) => {
+    if (confirm(t("confirmDeleteUser"))) {
+      try {
+        await apiFetch(`/api/admin/users/${id}/delete`, {
+          method: "DELETE",
+        });
+
+        await loadUsers();
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      return;
+    }
+  };
+
   return (
     <div>
       <div className="d-flex justify-content-between mb-3">
-        <h2>Users</h2>
+        <h2>{t("users")}</h2>
 
         <button className="btn btn-success" onClick={() => setShowModal(true)}>
-          + Add User
+          + {t("addUser")}
         </button>
       </div>
 
       <table className="table table-striped bg-white shadow-sm">
         <thead>
           <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>{t("username")}</th>
+            <th>{t("email")}</th>
+            <th>{t("role")}</th>
+            <th>{t("status")}</th>
+            <th>{t("actions")}</th>
           </tr>
         </thead>
 
@@ -140,7 +136,7 @@ function UsersPage() {
                     user.active ? "badge bg-success" : "badge bg-secondary"
                   }
                 >
-                  {user.active ? "Active" : "Blocked"}
+                  {user.active ? t("active") : t("blocked")}
                 </span>
               </td>
 
@@ -160,7 +156,7 @@ function UsersPage() {
                     setShowModal(true);
                   }}
                 >
-                  Edit
+                  {t("edit")}
                 </button>
 
                 <button
@@ -171,7 +167,13 @@ function UsersPage() {
                   }
                   onClick={() => toggleStatus(user.id)}
                 >
-                  {user.active ? "Block" : "Unblock"}
+                  {user.active ? t("block") : t("unblock")}
+                </button>
+                <button
+                  className={"btn btn-danger btn-sm ms-2"}
+                  onClick={() => deleteUser(user.id)}
+                >
+                  {t("delete")}
                 </button>
               </td>
             </tr>

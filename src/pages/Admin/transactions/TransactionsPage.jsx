@@ -1,7 +1,9 @@
 import React from "react";
 import useAdminTransactions from "../../../custom_hooks/useAdminTransactions";
+import { useTranslation } from "react-i18next";
 
 function TransactionsPage() {
+  const { t } = useTranslation();
 
   const {
     transactions,
@@ -10,7 +12,7 @@ function TransactionsPage() {
   } = useAdminTransactions();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>{t("loading")}</div>;
   }
 
   if (error) {
@@ -21,7 +23,7 @@ function TransactionsPage() {
     <div>
 
       <h2 className="mb-3">
-        Transactions
+        {t("transactions")}
       </h2>
 
       <table className="table table-bordered bg-white shadow-sm">
@@ -29,11 +31,11 @@ function TransactionsPage() {
         <thead>
 
           <tr>
-            <th>User</th>
-            <th>Asset</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Date</th>
+            <th>{t("user")}</th>
+            <th>{t("asset")}</th>
+            <th>{t("type")}</th>
+            <th>{t("amount")}</th>
+            <th>{t("date")}</th>
           </tr>
 
         </thead>

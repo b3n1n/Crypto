@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import useAdminAssets from "../../../custom_hooks/useAdminAssets";
 import AssetFromModal from "./AssetFromModal";
+import { useTranslation } from "react-i18next";
 
 function AssetsPage() {
+  const { t } = useTranslation();
   const [editingAsset, setEditingAsset] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -42,7 +44,7 @@ function AssetsPage() {
       });
 
       if (!response.ok) {
-        throw new Error("Save failed");
+        throw new Error(t("saveFailed"));
       }
 
       await loadAssets();
@@ -67,7 +69,7 @@ function AssetsPage() {
     });
   };
   const handleDelete = async (id) => {
-    const confirmed = window.confirm("Delete asset?");
+    const confirmed = window.confirm(t("confirmDeleteAsset"));
 
     if (!confirmed) return;
 
@@ -91,7 +93,7 @@ function AssetsPage() {
   return (
     <div>
       <div className="d-flex justify-content-between mb-3">
-        <h2>Assets</h2>
+        <h2>{t("assets")}</h2>
 
         <button
           className="btn btn-success"
@@ -107,7 +109,7 @@ function AssetsPage() {
             setShowModal(true);
           }}
         >
-          + Add Asset
+          + {t("addAsset")}
         </button>
       </div>
 
@@ -115,10 +117,10 @@ function AssetsPage() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Actions</th>
+            <th>{t("symbol")}</th>
+            <th>{t("name")}</th>
+            <th>{t("price")}</th>
+            <th>{t("actions")}</th>
           </tr>
         </thead>
 
@@ -148,14 +150,14 @@ function AssetsPage() {
                     setShowModal(true);
                   }}
                 >
-                  Edit
+                  {t("edit")}
                 </button>
 
                 <button
                   onClick={() => handleDelete(asset.id)}
                   className="btn btn-danger btn-sm"
                 >
-                  Delete
+                  {t("delete")}
                 </button>
               </td>
             </tr>

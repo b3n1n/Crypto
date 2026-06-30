@@ -1,0 +1,123 @@
+{
+  "appName": "Криптобиржа",
+
+  "login": "Войти",
+  "logout": "Выйти",
+  "register": "Регистрация",
+
+  "username": "Имя пользователя",
+  "email": "Электронная почта",
+  "password": "Пароль",
+  "confirmPassword": "Подтверждение пароля",
+
+  "enterUsername": "Введите имя пользователя",
+  "enterEmail": "Введите email",
+  "enterPassword": "Введите пароль",
+  "confirmYourPassword": "Подтвердите пароль",
+
+  "profile": "Профиль",
+  "portfolio": "Портфель",
+  "wallet": "Кошелек",
+  "market": "Рынок",
+  "trade": "Торговля",
+  "dashboard": "Панель",
+  "history": "История",
+
+  "buy": "Купить",
+  "sell": "Продать",
+
+  "price": "Цена",
+  "amount": "Количество",
+  "total": "Итого",
+
+  "balance": "Баланс",
+  "available": "Доступно",
+  "locked": "Заблокировано",
+
+  "deposit": "Пополнить",
+  "withdraw": "Вывести",
+
+  "depositFunds": "Пополнение баланса",
+  "withdrawFunds": "Вывод средств",
+
+  "processing": "Обработка...",
+  "cancel": "Отмена",
+  "close": "Закрыть",
+  "save": "Сохранить",
+  "delete": "Удалить",
+  "edit": "Изменить",
+
+  "asset": "Актив",
+  "assets": "Активы",
+
+  "recentTransactions": "Последние операции",
+  "transactions": "Транзакции",
+
+  "users": "Пользователи",
+  "adminPanel": "Панель администратора",
+
+  "search": "Поиск",
+
+  "loading": "Загрузка...",
+  "success": "Успешно",
+  "error": "Ошибка",
+
+  "language": "Язык",
+
+  "english": "Английский",
+  "russian": "Русский",
+  "ukrainian": "Украинский",
+
+  "registrationSuccessful": "Регистрация прошла успешно!",
+
+  "loginSuccessful": "Вы успешно вошли!",
+
+  "depositSuccessful": "Пополнение выполнено!",
+
+  "withdrawSuccessful": "Средства успешно выведены!",
+
+  "wrongPassword": "Неверный пароль",
+
+  "userBlocked": "Ваш аккаунт заблокирован.",
+
+  "invalidEmail": "Некорректный email",
+
+  "passwordRequirements": "Пароль должен содержать минимум 8 символов, заглавную букву, строчную букву и цифру",
+
+  "passwordMismatch": "Пароли не совпадают",
+
+  "serverError": "Ошибка сервера",
+
+  "insufficientFunds": "Недостаточно средств",
+
+  "tradeAction": "{{action}} {{ticker}}",
+  "marketOverview": "Обзор рынка",
+  "name": "Название",
+  "change24h": "Изменение за 24ч",
+  "volume": "Объём",
+  "marketCap": "Рыночная капитализация",
+  "singIn": "Войти",
+  "getStarted": "Регистрация",
+  "saveFailed": "Не удалось сохранить",
+  "confirmDeleteAsset": "Удалить актив?",
+  "confirmDeleteUser": "Вы подтверждаете удаление пользователя?",
+  "addAsset": "Добавить актив",
+  "addUser": "Добавить пользователя",
+  "symbol": "Символ",
+  "actions": "Действия",
+  "role": "Роль",
+  "status": "Статус",
+  "active": "Активен",
+  "blocked": "Заблокирован",
+  "block": "Заблокировать",
+  "unblock": "Разблокировать",
+  "user": "Пользователь",
+  "type": "Тип",
+  "date": "Дата",
+    "editAsset": "Редактировать актив",
+  "editUser": "Редактировать пользователя",
+  "update": "Обновить",
+  "symbolPlaceholder": "Символ (BTC)",
+  "namePlaceholder": "Название (Bitcoin)",
+  "coingeckoIdPlaceholder": "CoinGecko ID (bitcoin)"
+}

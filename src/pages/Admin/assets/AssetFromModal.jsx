@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 function AssetFromModal({
   show,
@@ -8,6 +9,7 @@ function AssetFromModal({
   handleChange,
   editingAsset,
 }) {
+  const { t } = useTranslation();
   if (!show) return null;
 
   return (
@@ -22,7 +24,7 @@ function AssetFromModal({
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">
-              {editingAsset ? "Edit Asset" : "Add Asset"}
+              {editingAsset ? t("editAsset") : t("addAsset")}
             </h5>
 
             <button className="btn-close" onClick={onClose} />
@@ -32,7 +34,7 @@ function AssetFromModal({
             <input
               type="text"
               className="form-control mb-3"
-              placeholder="Symbol (BTC)"
+              placeholder={t("symbolPlaceholder")}
               name="symbol"
               value={formData.symbol}
               onChange={handleChange}
@@ -41,7 +43,7 @@ function AssetFromModal({
             <input
               type="text"
               className="form-control mb-3"
-              placeholder="Name (Bitcoin)"
+              placeholder={t("namePlaceholder")}
               name="name"
               value={formData.name}
               onChange={handleChange}
@@ -50,7 +52,7 @@ function AssetFromModal({
             <input
               type="text"
               className="form-control"
-              placeholder="CoinGecko ID (bitcoin)"
+              placeholder={t("coingeckoIdPlaceholder")}
               name="coingeckoId"
               value={formData.coingeckoId}
               onChange={handleChange}
@@ -59,11 +61,11 @@ function AssetFromModal({
 
           <div className="modal-footer">
             <button className="btn btn-secondary" onClick={onClose}>
-              Cancel
+              {t("cancel")}
             </button>
 
             <button className="btn btn-success" onClick={onSave}>
-              {editingAsset ? "Update" : "Save"}
+              {editingAsset ? t("update") : t("save")}
             </button>
           </div>
         </div>

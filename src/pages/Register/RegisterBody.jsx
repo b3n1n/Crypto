@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { apiFetch } from "../../api/api";
+import { useTranslation } from "react-i18next";
 
 function RegisterBody() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { t } = useTranslation();
 
   const [errors, setErrors] = useState({});
 
@@ -14,18 +18,17 @@ function RegisterBody() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
-      newErrors.email = "Invalid email format";
+      newErrors.email = t("invalidEmail");
     }
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
     if (!passwordRegex.test(password)) {
-      newErrors.password =
-        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number";
+      newErrors.password = t("passwordRequirements");
     }
 
     if (password !== confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = t("passwordMismatch");
     }
 
     setErrors(newErrors);
@@ -58,26 +61,25 @@ function RegisterBody() {
       setPassword("");
       setConfirmPassword("");
       setErrors({});
+      toast.success(t("registrationSuccessful"));
     } catch (error) {
-      console.error(error);
-
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
   return (
     <div className="container vh-100 d-flex justify-content-center align-items-center">
       <div className="card shadow p-4 col-12 col-md-6 col-lg-4">
-        <h2 className="text-center mb-4">Registration</h2>
+        <h2 className="text-center mb-4"> {t("register")}</h2>
 
         <form noValidate onSubmit={handleRegister}>
           <div className="mb-3">
-            <label className="form-label">Username</label>
+            <label className="form-label"> {t("username")}</label>
 
             <input
               type="text"
               className="form-control"
-              placeholder="Enter username"
+              placeholder={t("enterUsername")}
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
               required
@@ -85,12 +87,12 @@ function RegisterBody() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Email</label>
+            <label className="form-label"> {t("email")}</label>
 
             <input
               type="email"
               className={`form-control ${errors.email ? "is-invalid" : ""}`}
-              placeholder="Enter email"
+              placeholder={t("enterEmail")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -101,12 +103,12 @@ function RegisterBody() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Password</label>
+            <label className="form-label"> {t("password")}</label>
 
             <input
               type="password"
               className={`form-control ${errors.password ? "is-invalid" : ""}`}
-              placeholder="Enter password"
+              placeholder={t("enterPassword")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -117,14 +119,14 @@ function RegisterBody() {
           </div>
 
           <div className="mb-4">
-            <label className="form-label">Confirm password</label>
+            <label className="form-label"> {t("confirmYourPassword")}</label>
 
             <input
               type="password"
               className={`form-control ${
                 errors.confirmPassword ? "is-invalid" : ""
               }`}
-              placeholder="Confirm password"
+              placeholder={t("confirmYourPassword")}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
@@ -135,7 +137,7 @@ function RegisterBody() {
           </div>
 
           <button type="submit" className="btn btn-success w-100">
-            Register
+             {t("register")}
           </button>
         </form>
       </div>

@@ -1,0 +1,17 @@
+.trade-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Планшеты и телефоны */
+@media (max-width: 992px) {
+  .trade-layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .trade-layout > * {
+    width: 100%;
+  }
+}

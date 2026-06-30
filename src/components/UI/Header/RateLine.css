@@ -42,3 +42,22 @@
     transform: translateX(calc(-1 * var(--move)));
   }
 }
+
+@media (max-width: 768px) {
+  .rateLine-container {
+    height: 2.5rem;
+    font-size: 0.8rem;
+  }
+
+  .coin {
+    gap: 6px;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coin {
+    margin-right: 0.7rem;
+    font-size: 0.75rem;
+  }
+}

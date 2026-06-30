@@ -1,0 +1,123 @@
+{
+  "appName": "Crypto Exchange",
+
+  "login": "Login",
+  "logout": "Logout",
+  "register": "Register",
+
+  "username": "Username",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm password",
+
+  "enterUsername": "Enter username",
+  "enterEmail": "Enter email",
+  "enterPassword": "Enter password",
+  "confirmYourPassword": "Confirm password",
+
+  "profile": "Profile",
+  "portfolio": "Portfolio",
+  "wallet": "Wallet",
+  "market": "Market",
+  "trade": "Trade",
+  "dashboard": "Dashboard",
+  "history": "History",
+
+  "buy": "Buy",
+  "sell": "Sell",
+
+  "price": "Price",
+  "amount": "Amount",
+  "total": "Total",
+
+  "balance": "Balance",
+  "available": "Available",
+  "locked": "Locked",
+
+  "deposit": "Deposit",
+  "withdraw": "Withdraw",
+
+  "depositFunds": "Deposit Funds",
+  "withdrawFunds": "Withdraw Funds",
+
+  "processing": "Processing...",
+  "cancel": "Cancel",
+  "close": "Close",
+  "save": "Save",
+  "delete": "Delete",
+  "edit": "Edit",
+
+  "asset": "Asset",
+  "assets": "Assets",
+
+  "recentTransactions": "Recent Transactions",
+  "transactions": "Transactions",
+
+  "users": "Users",
+  "adminPanel": "Admin Panel",
+
+  "search": "Search",
+
+  "loading": "Loading...",
+  "success": "Success",
+  "error": "Error",
+
+  "language": "Language",
+
+  "english": "English",
+  "russian": "Russian",
+  "ukrainian": "Ukrainian",
+
+  "registrationSuccessful": "Registration successful!",
+  "loginSuccessful": "Successfully logged in!",
+
+  "depositSuccessful": "Deposit successful!",
+  "withdrawSuccessful": "Withdrawal successful!",
+
+  "wrongPassword": "Wrong password",
+
+  "userBlocked": "Your account has been blocked.",
+
+  "invalidEmail": "Invalid email format",
+
+  "passwordRequirements": "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number",
+
+  "passwordMismatch": "Passwords do not match",
+
+  "serverError": "Server error",
+
+  "insufficientFunds": "Insufficient funds",
+  
+  "tradeAction" : "{{action}} {{ticker}}",
+
+  "marketOverview": "Market Overview",
+  "name": "Name",
+  "change24h": "24h Change",
+  "volume": "Volume",
+  "marketCap": "Market Cap",
+  "singIn": "Sing in",
+  "getStarted": "Get Started",
+"saveFailed": "Save failed",
+  "confirmDeleteAsset": "Delete asset?",
+  "confirmDeleteUser": "Do you confirm deleting user?",
+  "addAsset": "Add Asset",
+  "addUser": "Add User",
+  "symbol": "Symbol",
+  "actions": "Actions",
+  "role": "Role",
+  "status": "Status",
+  "active": "Active",
+  "blocked": "Blocked",
+  "block": "Block",
+  "unblock": "Unblock",
+  "user": "User",
+  "type": "Type",
+  "date": "Date",
+    "editAsset": "Edit Asset",
+  "editUser": "Edit User",
+  "update": "Update",
+  "symbolPlaceholder": "Symbol (BTC)",
+  "namePlaceholder": "Name (Bitcoin)",
+  "coingeckoIdPlaceholder": "CoinGecko ID (bitcoin)"
+  
+}

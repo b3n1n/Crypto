@@ -1,42 +1,38 @@
 import React, { useState } from "react";
 import api from "../../../api/axios";
-import { useWallet } from "../../../context/WalletContext";
 import { toast } from "react-toastify";
+import { useWallet } from "../../../context/WalletContext";
 import { useTranslation } from "react-i18next";
 
-function DepositModal({ show, onClose }) {
+function WithdrawalModal({ show, onClose }) {
   const { t } = useTranslation();
-  const [amount, setAmount] = useState("");
-
-  const [loading, setLoading] = useState(false);
-
   const { refreshWallets } = useWallet();
+  const [amount, setAmount] = useState("");
+  const [loading, setLoading] = useState(false);
 
   if (!show) return null;
 
-  const handleDeposit = async (e) => {
+  const handleWithdrawal = async (e) => {
     e.preventDefault();
 
     try {
       setLoading(true);
 
-      await api.post("/wallet/deposit", {
+      await api.post("/wallet/withdraw", {
         amount: Number(amount),
       });
 
       await refreshWallets();
 
-      toast.success(t("depositSuccessful"));
-
-      setAmount("");
+      toast.success(t("withdrawSuccessful"));
       onClose();
     } catch (error) {
       console.error(error);
 
-      alert(
-        error.response?.data ||
-          error.response?.data?.message ||
-          "Deposit failed",
+      toast.error(
+        error.response?.data?.message ||
+          error.response?.data ||
+          "Withdrawal failed",
       );
     } finally {
       setLoading(false);
@@ -64,15 +60,17 @@ function DepositModal({ show, onClose }) {
       >
         <div className="card shadow-lg">
           <div className="card-header d-flex justify-content-between align-items-center">
-            <h5 className="m-0"> {t("depositFunds")}</h5>
+            <h5 className="m-0">{t("withdrawFunds")}</h5>
 
             <button className="btn-close" onClick={onClose} />
           </div>
 
           <div className="card-body">
-            <form onSubmit={handleDeposit}>
+            <form onSubmit={handleWithdrawal}>
               <div className="mb-3">
-                <label className="form-label"> {t("amount")}</label>
+                <label className="form-label">
+                  <label>{t("amount")}</label>
+                </label>
 
                 <input
                   type="number"
@@ -85,8 +83,8 @@ function DepositModal({ show, onClose }) {
                 />
               </div>
 
-              <button className="btn btn-success w-100" disabled={loading}>
-                {loading ? t("processing") : t("deposit")}
+              <button className="btn btn-danger w-100" disabled={loading}>
+                {t("processing")}
               </button>
             </form>
           </div>
@@ -96,4 +94,4 @@ function DepositModal({ show, onClose }) {
   );
 }
 
-export default DepositModal;
+export default WithdrawalModal;
