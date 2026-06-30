@@ -11,7 +11,7 @@ function useAdminDashboard() {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          "http://localhost:8080/api/admin/dashboard",
+          "https://crypto-application-956e851e13c5.herokuapp.com//api/admin/dashboard",
           {
             headers: {
               Authorization: `Bearer ${token}`,
