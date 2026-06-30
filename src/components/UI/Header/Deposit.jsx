@@ -20,7 +20,7 @@ function DepositModal({ show, onClose }) {
     try {
       setLoading(true);
 
-      await api.post("/wallet/deposit", {
+      await api.post("api/wallet/deposit", {
         amount: Number(amount),
       });
 
